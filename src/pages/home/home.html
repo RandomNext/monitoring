@@ -3,16 +3,22 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Servery</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-grid>
+    <ion-row *ngFor="let server of servers">
+      <ion-col col-8>
+        <h4>{{server.name}}</h4>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button color="secondary">{{server.status}}</button>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button (click)="removeServer(server)" color="danger">X</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

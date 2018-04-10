@@ -8,6 +8,12 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { BackgroundMode } from "@ionic-native/background-mode";
+import { ServersProvider } from '../providers/servers/servers';
+import { StatusCheckerProvider } from '../providers/status-checker/status-checker';
+import { IonicStorageModule } from "@ionic/storage";
+import { HttpModule } from "@angular/http";
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -18,6 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +36,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    BackgroundMode,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServersProvider,
+    StatusCheckerProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {}

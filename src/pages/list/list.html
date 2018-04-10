@@ -3,21 +3,28 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Přidat server</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+  <ion-grid>
+    <form (ngSubmit)="saveServer()">
+      <ion-row>
+        <ion-col>
+          <ion-input type="text" [(ngModel)]="server.name" name="name" placeholder="Název serveru"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-input type="text" [(ngModel)]="server.url" name="url" placeholder="URL api endpointu" value="http://"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button type="submit" block>Přidat</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
 </ion-content>
